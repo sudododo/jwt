@@ -68,7 +68,6 @@ test_decoding_simple2() ->
     Signature = <<"Q6CM1qIz2WTgTlhMzpFL8jI8xbu9FFfj5DY_bGVY98Y">>,
 
     Claims = jwt:decode(makeToken(Header, Payload, Signature), ?SECRET),
-    io.
     ?assertMatch({ok, #{ <<"sub">> := <<"1234567890">>
                        , <<"name">> := <<"John Doe">>
                        }}, Claims).
