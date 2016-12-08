@@ -35,6 +35,8 @@ encode(Alg, ClaimsSet, Expiration, Key) ->
     end.
 
 decode(Token, Key) ->
+    io:format("Auth jwt: Token=~p, Key=~p~n",
+              [Token, Key]),
     case split_token(Token) of
         SplitToken = [Header, Claims | _] ->
             case decode_jwt(SplitToken) of
@@ -47,9 +49,9 @@ decode(Token, Key) ->
                                 false -> {ok, ClaimsJSON}
                             end
                     end;
-                invalid -> {error, invalid_token}
+                invalid -> io:format("invalid token 1"), {error, invalid_token}
             end;
-        _ -> {error, invalid_token}
+        _ -> io:format("invalid token 2"), {error, invalid_token}
     end.
 
 % When there are multiple issuers and keys are on a per issuer bases
