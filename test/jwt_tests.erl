@@ -68,9 +68,10 @@ test_decoding_simple2() ->
     Signature = <<"TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ">>,
 
     Claims = jwt:decode(makeToken(Header, Payload, Signature), ?SECRET),
-
-    ?assertMatch({ok, #{ <<"sub">> := 1234567890
-                       , <<"name">> := <<"John Doe">>
+    io.
+    ?assertMatch({ok, #{ <<"sub">> := <<"1234567890">>
+                       , <<"name">> := <<"John Doe">>,
+                       <<"admin">> := true
                        }}, Claims).
 
 test_decoding_header_error() ->
