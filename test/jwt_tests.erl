@@ -82,8 +82,8 @@ test_decoding_simple2() ->
     % Header = <<"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9">>,
     % Payload = <<"eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIn0">>,
     % Signature = <<"Q6CM1qIz2WTgTlhMzpFL8jI8xbu9FFfj5DY_bGVY98Y">>,
-    Token = <<"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIn0.Q6CM1qIz2WTgTlhMzpFL8jI8xbu9FFfj5DY_bGVY98">>,
-
+    Token = <<"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIn0.Q6CM1qIz2WTgTlhMzpFL8jI8xbu9FFfj5DY_bGVY98Y">>,
+    io:format("Auth jwt: Token=~p, Key=~p~n", [Token, Key]),
     Claims = jwt:decode(Token, ?SECRET),
     ?assertMatch({ok, #{ <<"sub">> := <<"1234567890">>
                        , <<"name">> := <<"John Doe">>
