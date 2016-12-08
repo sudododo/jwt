@@ -64,14 +64,13 @@ test_decoding_simple() ->
 
 test_decoding_simple2() ->
     Header = <<"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9">>,
-    Payload = <<"eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9">>,
-    Signature = <<"TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ">>,
+    Payload = <<"eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIn0">>,
+    Signature = <<"Q6CM1qIz2WTgTlhMzpFL8jI8xbu9FFfj5DY_bGVY98Y">>,
 
     Claims = jwt:decode(makeToken(Header, Payload, Signature), ?SECRET),
     io.
     ?assertMatch({ok, #{ <<"sub">> := <<"1234567890">>
-                       , <<"name">> := <<"John Doe">>,
-                       <<"admin">> := true
+                       , <<"name">> := <<"John Doe">>
                        }}, Claims).
 
 test_decoding_header_error() ->
